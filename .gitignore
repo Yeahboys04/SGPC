@@ -1,16 +1,6 @@
 SGPC.old/
 gochimitheque-2.0.6/
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
-###< symfony/framework-bundle ###
-
 ###> symfony/phpunit-bridge ###
 .phpunit
 .phpunit.result.cache
@@ -28,3 +18,20 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 /tmp/
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/src/preload.php
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
