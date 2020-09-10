@@ -313,8 +313,8 @@ create table `user`
 (
    id_user                serial,
    id_status              BIGINT UNSIGNED NOT NULL,
-   `name`                 varchar(250) not null,
-   firstName              varchar(250) not null,
+   `login`                varchar(250) not null,
+   fullName               varchar(250) not null,
    mail                   varchar(250) not null,
    `password`             varchar(250) not null,
    endRightDate           date,
