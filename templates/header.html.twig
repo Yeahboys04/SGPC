@@ -1,0 +1,44 @@
+<header>
+    <div style="display: flex; justify-content: space-between;" >
+        <a href="/">
+            <img src="{{ asset('images/logo_rvb.png') }}"/>
+        </a>
+        {% if app.user %}
+            <div id="deconnexion">
+                <h2>Bienvenue {{ app.user.fullname|capitalize }}, vous êtes : {{ app.user.getRoles()[0]|capitalize }}</h2>
+                <a href="/logout">
+                    <input type='button' value='Se déconnecter'>
+                </a>
+            </div>
+
+            <div id="menu">
+                <a href="/">
+                Création
+                </a>
+                <div class="vl"></div>
+                <a href="/">
+                    Consultation
+                </a>
+                <div class="vl"></div>
+                <a href="/">
+                    Édition
+                </a>
+                {% if app.user.getRoles()[0] == 'administrateur' %}
+                    <div class="vl"></div>
+
+                    <a href="/admin">
+                        Administration
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if app.user is null %}
+            <div id="connexion">
+                <a href="/login">
+                    <input type='button' value='Se connecter'>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+    
+</header>

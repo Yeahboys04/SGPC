@@ -5,14 +5,16 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="id_user", columns={"id_user"})}, indexes={@ORM\Index(name="FK_user_status", columns={"id_status"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -96,7 +98,7 @@ class User
         return $this->idUser;
     }
 
-    public function getLogin(): ?string
+    public function getUsername(): ?string
     {
         return $this->login;
     }
@@ -142,6 +144,22 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array($this->getIdStatus()->getNameStatus());
+    }
+
+    public function eraseCredentials()
+    {
     }
 
     public function getEndrightdate(): ?\DateTimeInterface
@@ -194,4 +212,33 @@ class User
         return $this;
     }
 
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->idUser,
+            $this->login,
+            $this->password,
+            $this->fullname,
+            $this->mail,
+            $this->endrightdate
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->idUser,
+            $this->login,
+            $this->password,
+            $this->fullname,
+            $this->mail,
+            $this->endrightdate
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
 }
