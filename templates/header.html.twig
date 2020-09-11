@@ -1,44 +1,41 @@
-<header>
-    <div style="display: flex; justify-content: space-between;" >
-        <a href="/">
-            <img src="{{ asset('images/logo_rvb.png') }}"/>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/header_style.css') }}">
+{% endblock %}
+<header class="main-header">
+    <div id="header">
+        <a href="/" class="logo">
+            <img src="{{ asset('images/logo_rvb.png') }}" class="user-image"/>
         </a>
         {% if app.user %}
-            <div id="deconnexion">
-                <h2>Bienvenue {{ app.user.fullname|capitalize }}, vous êtes : {{ app.user.getRoles()[0]|capitalize }}</h2>
+            <div id="deconnexion" class="navbar navbar-static-top">
+                <p>Bienvenue {{ app.user.fullname|capitalize }}, vous êtes : {{ app.user.getRoles()[0]|capitalize }}</p>
                 <a href="/logout">
                     <input type='button' value='Se déconnecter'>
                 </a>
             </div>
-
-            <div id="menu">
-                <a href="/">
-                Création
-                </a>
-                <div class="vl"></div>
-                <a href="/">
-                    Consultation
-                </a>
-                <div class="vl"></div>
-                <a href="/">
-                    Édition
-                </a>
+    </div>
+</header>
+<aside class="main-sidebar">
+            <ul id="menu" class="sidebar-menu tree" data-widget="tree">
+                <li class="header">Menu</li>
+                <li><a href="/">Consultation</a></li>
+                <li><a href="/">Retrait de produit</a></li>
+                <li><a href="/">Gestion des stocks</a></li>
+                <li><a href="/">Historique</a></li>
                 {% if app.user.getRoles()[0] == 'administrateur' %}
-                    <div class="vl"></div>
-
-                    <a href="/admin">
-                        Administration
-                    </a>
+                    <li><a href="/admin">Administration</a></li>
                 {% endif %}
-            </div>
+            </ul>
+</aside>
         {% endif %}
+
         {% if app.user is null %}
             <div id="connexion">
                 <a href="/login">
                     <input type='button' value='Se connecter'>
                 </a>
             </div>
-        {% endif %}
     </div>
-    
-</header>
+    </header>
+        {% endif %}
+
