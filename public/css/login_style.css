@@ -1,0 +1,10 @@
+#ul_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-title {
+    display: block !important;
+    text-align: center;
+}

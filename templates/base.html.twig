@@ -24,11 +24,13 @@
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
             {{ include('header.html.twig') }}
-            <div class="content-wrapper">
+            <div class="content-wrapper" style="min-height: 836px;">
                 {% block body %}{% endblock %}
             </div>
+
             {% block javascripts %}{% endblock %}
             {{ include('footer.html.twig') }}
+            
         </div>
     </body>
 </html>

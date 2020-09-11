@@ -6,36 +6,112 @@
         <a href="/" class="logo">
             <img src="{{ asset('images/logo_rvb.png') }}" class="user-image"/>
         </a>
+        
+    </div>
+
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
         {% if app.user %}
-            <div id="deconnexion" class="navbar navbar-static-top">
+            <div class="login">
                 <p>Bienvenue {{ app.user.fullname|capitalize }}, vous êtes : {{ app.user.getRoles()[0]|capitalize }}</p>
                 <a href="/logout">
-                    <input type='button' value='Se déconnecter'>
+                    <input type='button' value='Se déconnecter' class="btn btn-block btn-info btn-lg">
                 </a>
             </div>
-    </div>
-</header>
-<aside class="main-sidebar">
-            <ul id="menu" class="sidebar-menu tree" data-widget="tree">
-                <li class="header">Menu</li>
-                <li><a href="/">Consultation</a></li>
-                <li><a href="/">Retrait de produit</a></li>
-                <li><a href="/">Gestion des stocks</a></li>
-                <li><a href="/">Historique</a></li>
-                {% if app.user.getRoles()[0] == 'administrateur' %}
-                    <li><a href="/admin">Administration</a></li>
-                {% endif %}
-            </ul>
-</aside>
         {% endif %}
 
         {% if app.user is null %}
-            <div id="connexion">
+            <div class="login">
                 <a href="/login">
-                    <input type='button' value='Se connecter'>
+                    <input type='button' value='Se connecter' class="btn btn-block btn-info btn-lg">
                 </a>
             </div>
-    </div>
-    </header>
         {% endif %}
+    </nav>
+</header>
 
+{% if app.user %}
+<aside class="main-sidebar control-sidebar control-sidebar-dark">
+    <section class="sidebar">
+            <ul id="menu" class="sidebar-menu tree" data-widget="tree">
+                <li class="header"><span>MENU</span></li>
+                <li><a href="/search">
+                        <i class="fa  fa-file-text"></i>
+                        <span>Consultation</span>
+                    </a>
+                </li>
+                <li><a href="/">
+                        <i class="fa fa-flask"></i>
+                        <span>Retrait de produit</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="/">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>Gestion des stocks</span>
+                        <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/">
+                                <span>Inventaire</span>
+                            </a>
+                        </li>
+                        <li><a href="/">
+                                <span>Créer une fiche produit</span>
+                            </a>
+                        </li>
+                        <li><a href="/">
+                                <span>Créer une fiche de stockage</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="/">
+                        <i class="fa fa-folder-open"></i>
+                        <span>Historique</span>
+                    </a>
+                </li>
+                {% if app.user.getRoles()[0] == 'administrateur' %}
+                    <li class="treeview">
+                        <a href="/admin">
+                            <i class="fa fa-gears"></i>
+                            <span>Administration</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{path('admin',  {'_fragment': 'tab_1'})}}">
+                                    <span>Gestion des utilisateurs</span>
+                                </a>
+                            </li>
+                            <li><a href="{{path('admin')}}#tab_2">
+                                    <span>Gestion des sites</span>
+                                </a>
+                            </li>
+                            <li><a href="{{path('admin')}}#tab_3">
+                                    <span>Gestion des référentiels</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+    </section>
+</aside>
+{% endif %}
+
+
+{% block javascripts %}
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+{% endblock %}

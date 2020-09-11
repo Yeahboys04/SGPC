@@ -67,7 +67,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Login could not be found.');
+            throw new CustomUserMessageAuthenticationException('Login invalide.');
         }
 
         return $user;
@@ -81,6 +81,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if ($password == $user->getPassword()) {
             return true;
         }
+        throw new CustomUserMessageAuthenticationException('Mot de passe invalide.');
         return false;
     }
 
