@@ -14,7 +14,7 @@
         <!-- AdminLTE Skins. We have chosen the skin-purple for this starter
                 page. However, you can choose any other skin. Make sure you
                 apply the skin class to the body tag so the changes take effect. -->
-        <link rel="stylesheet" href="{{ asset('dist/css/skins/skin-blue.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dist/css/skins/georessources.css') }}">
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -27,10 +27,14 @@
             <div class="content-wrapper" style="min-height: 836px;">
                 {% block body %}{% endblock %}
             </div>
-
-            {% block javascripts %}{% endblock %}
             {{ include('footer.html.twig') }}
             
+           <!-- jQuery 3 -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+            <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+            {% block javascripts %}{% endblock %}
         </div>
     </body>
 </html>

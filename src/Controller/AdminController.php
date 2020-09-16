@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
@@ -13,7 +14,7 @@ class AdminController extends AbstractController
     public function index()
     {
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            'controller_name' => 'AdminController'
         ]);
     }
 }

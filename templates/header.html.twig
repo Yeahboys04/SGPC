@@ -21,7 +21,7 @@
             <div class="login">
                 <p>Bienvenue {{ app.user.fullname|capitalize }}, vous êtes : {{ app.user.getRoles()[0]|capitalize }}</p>
                 <a href="/logout">
-                    <input type='button' value='Se déconnecter' class="btn btn-block btn-info btn-lg">
+                    <input type='button' value='Se déconnecter' class="btn btn-block btn-warning btn-lg">
                 </a>
             </div>
         {% endif %}
@@ -29,7 +29,7 @@
         {% if app.user is null %}
             <div class="login">
                 <a href="/login">
-                    <input type='button' value='Se connecter' class="btn btn-block btn-info btn-lg">
+                    <input type='button' value='Se connecter' class="btn btn-block btn-warning btn-lg">
                 </a>
             </div>
         {% endif %}
@@ -89,15 +89,15 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{path('admin',  {'_fragment': 'tab_1'})}}">
+                            <li><a href="admin/users">
                                     <span>Gestion des utilisateurs</span>
                                 </a>
                             </li>
-                            <li><a href="{{path('admin')}}#tab_2">
+                            <li><a href="/admin/sites">
                                     <span>Gestion des sites</span>
                                 </a>
                             </li>
-                            <li><a href="{{path('admin')}}#tab_3">
+                            <li><a href="/admin/references">
                                     <span>Gestion des référentiels</span>
                                 </a>
                             </li>
@@ -108,10 +108,3 @@
     </section>
 </aside>
 {% endif %}
-
-
-{% block javascripts %}
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="dist/js/adminlte.min.js"></script>
-{% endblock %}
